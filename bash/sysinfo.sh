@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#introduction to report
+echo "Report for "$(hostname)
+echo " "
+
+echo "------------------------------"
 #for FQDN
 echo "FQDN: " $(hostname --fqdn)
 echo ""
@@ -7,7 +12,7 @@ echo ""
 #for system OS, version and kernel
 
 echo "System OS: " $(uname)
-echo "Distro: "$(uname -v)
+echo $(hostnamectl | sed -n 7p)
 echo "Distro version: "$(uname -r)
 echo ""
 
@@ -18,7 +23,6 @@ echo ""
 
 #storage info for root
 
-echo "Root system info: "
-echo $(df -h | sed -n 1p)
-echo $(df -h | sed -n 3p)
-
+echo "Root system available disk size: "$(df -h / --output=avail | tail -n 1)
+echo "------------------------------"
+echo " "

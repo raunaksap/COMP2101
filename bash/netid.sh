@@ -32,7 +32,7 @@
 ####
 #if "-v" is entered as an option, we put verbose = yes
 while [ $# -gt  0 ]; do
-	case "$!" in
+	case "$1" in
 		-v)
 			verbose="yes"
 			;;

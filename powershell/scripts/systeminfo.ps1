@@ -5,6 +5,7 @@ function get-hardware{
 get-ciminstance win32_computersystem
 }
 
+write-output "Hardware information for this computer"
 get-hardware
 
 #function for operating system name and version
@@ -12,6 +13,7 @@ function get-operating{
 get-ciminstance win32_operatingsystem | select -property Name, Version
 }
 
+write-output "Operating System"
 get-operating
 
 #processor description function
@@ -20,6 +22,7 @@ get-ciminstance win32_processor | select -property Description,NumberOfCores, Ma
 
 }
 
+write-output "Processor information for this computer"
 get-processor
 
 #function for RAM info
@@ -27,6 +30,7 @@ function get-ram{
 get-ciminstance win32_physicalmemory | select -property Manufacturer, Description, Capacity, BankLabel, DeviceLocator
 }
 
+write-output "RAM information"
 get-ram
 
 #function to get info on various drives
@@ -48,6 +52,7 @@ function get-diskinfo{
   }
 }
 
+write-output "Disk drive information"
 get-diskinfo
 
 #function for network adapter info
@@ -55,6 +60,7 @@ function get-network{
 get-ciminstance win32_networkadapterconfiguration | where-object ipenabled -eq yes | select -property servicename,index,description,IPsubnet,IPaddress,dnsdomain,dnsserver | format-table -autosize
 }
 
+write-output "Network adapter information"
 get-network
 
 #function for video card info
@@ -70,4 +76,5 @@ write-output "Description: " $description
 write-output "Resolution: " $resolution
 }
 
+write-output "Video card information"
 get-videocard
